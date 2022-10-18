@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class NeutralInput : AiInput
 {
+    public bool random = false;
     public Transform[] targets;
     public float targetCompletionDistance = 10;
 
@@ -21,9 +22,16 @@ public class NeutralInput : AiInput
     {
         if (Vector3.Distance(transform.position, Target.position) < targetCompletionDistance)
         {
-            targetIndex++;
-            if (targetIndex >= targets.Length)
-                targetIndex = 0;
+            if (!random)
+            {
+                targetIndex++;
+                if (targetIndex >= targets.Length)
+                    targetIndex = 0;
+            }
+            else
+            {
+                targetIndex = Random.Range(0, targets.Length);
+            }
 
             Target = targets[targetIndex];
         }
