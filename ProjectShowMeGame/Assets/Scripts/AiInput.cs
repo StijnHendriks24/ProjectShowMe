@@ -24,6 +24,8 @@ public class AiInput : MonoBehaviour
 
     public virtual void Update()
     {
+        agent.transform.localPosition = Vector3.zero;
+
         agent.SetDestination(Target.position);
 
         Vector3 normalizedMovement = agent.desiredVelocity.normalized;
