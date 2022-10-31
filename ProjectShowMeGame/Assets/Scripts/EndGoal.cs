@@ -13,7 +13,6 @@ public class EndGoal : MonoBehaviour
     private bool playerEntered = false;
     private float currentTime = 0;
     private List<GameObject> currentEnemies = new List<GameObject>();
-    private int numberOfEnemies = 0;
 
     private void Start()
     {

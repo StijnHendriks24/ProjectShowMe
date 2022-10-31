@@ -232,21 +232,11 @@ public class CarController : MonoBehaviour
             effectsAudioSource.Play();
         }
 
-        nextTimeToEffect = Time.time + 0.1f;
+        nextTimeToEffect = Time.time + 0.2f;
     }
 
     private IEnumerator ChangeEngineVolume(float end, float duration)
     {
-        //float start = engineAudioSource.volume;
-        //float percent = 0;
-        //float timeFactor = 1 / duration;
-        //while (percent < 1)
-        //{
-        //    percent += Time.deltaTime * timeFactor;
-        //    engineAudioSource.volume = Mathf.Lerp(start, end, Mathf.SmoothStep(0, 1, percent));
-        //    yield return null;
-        //}
-
         float startVolume = engineAudioSource.volume;
         float t = 0.0f;
         while (t < duration)
