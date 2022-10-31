@@ -10,9 +10,19 @@ public class PlayerInput : MonoBehaviour
     private float steerInput = 0f;
     private CarController carController;
 
+    [Header("Audio")]
+    public bool debugAudio = false;
+    public float collisionForceThreshold = 200;
+    public AudioClip collisionClip;
+    public AudioSource effectsAudioSource;
+
+    private float nextTimeToEffect;
+
     void Start()
     {
         carController = GetComponent<CarController>();
+
+        carController.SetupConnection(CollisionOccured);
     }
 
     void Update()
@@ -21,10 +31,29 @@ public class PlayerInput : MonoBehaviour
         steerInput = Input.GetAxisRaw("Horizontal");
 
         carController.GiveInput(throttleInput, steerInput);
+    }
 
-        // TODO: Properly implement screenshake
-        if (Input.GetKeyDown(KeyCode.Space))
-            StartCoroutine(Shake(0.15f, 0.1f));
+    void CollisionOccured(float impactForce)
+    {
+        if (Time.time < nextTimeToEffect)
+            return;
+
+        // TODO: Combine with AI
+
+        if (debugAudio)
+        {
+            Debug.Log(gameObject.name + " ImpactForce: " + impactForce);
+        }
+
+        if (impactForce < collisionForceThreshold)
+            return;
+
+        effectsAudioSource.clip = collisionClip;
+        effectsAudioSource.Play();
+
+        nextTimeToEffect = Time.time + 0.2f;
+
+        StartCoroutine(Shake(0.15f, 0.1f));
     }
 
     public IEnumerator Shake(float duration, float magnitude)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,15 +47,12 @@ public class CarController : MonoBehaviour
 
     Vector3 drot = new Vector3(0f, 0f, 0f);
 
+    private Action<float> collisionCallback;
+
     [Header("Audio")]
-    public bool debugAudio = false;
-    public float collisionForceThreshold = 200;
-    public AudioClip collisionClip;
     public AudioClip engineRunningClip;
-    public AudioSource effectsAudioSource;
     public AudioSource engineAudioSource;
 
-    private float nextTimeToEffect;
     private float engineRunningVolume;
     private Coroutine engineVolumeCoroutine;
 
@@ -91,6 +89,11 @@ public class CarController : MonoBehaviour
             gripZ = 0f;
             rigidBody.angularDrag = AngDragAir;
         }
+    }
+
+    public void SetupConnection(Action<float> _collisionCallback)
+    {
+        collisionCallback = _collisionCallback;
     }
 
     void FixedUpdate()
@@ -216,23 +219,9 @@ public class CarController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (Time.time < nextTimeToEffect)
-            return;
-
         float ImpactForce = (collision.impulse / Time.fixedDeltaTime).magnitude;
-        
-        if (debugAudio)
-        {
-            Debug.Log(gameObject.name + " ImpactForce: " + ImpactForce);
-        }
 
-        if (ImpactForce > collisionForceThreshold)
-        {
-            effectsAudioSource.clip = collisionClip;
-            effectsAudioSource.Play();
-        }
-
-        nextTimeToEffect = Time.time + 0.2f;
+        collisionCallback.Invoke(ImpactForce);
     }
 
     private IEnumerator ChangeEngineVolume(float end, float duration)

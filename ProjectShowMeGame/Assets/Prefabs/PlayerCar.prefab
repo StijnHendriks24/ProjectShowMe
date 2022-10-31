@@ -434,7 +434,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815715246963803980}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: -290.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -504,6 +504,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da4acd6cc3aa2a3428b75ac29d45ad05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraObject: {fileID: 0}
+  debugAudio: 0
+  collisionForceThreshold: 200
+  collisionClip: {fileID: 8300000, guid: defc1c6b6efb1ba4a94e6f4aad44a545, type: 3}
+  effectsAudioSource: {fileID: 7861598305393655426}
 --- !u!81 &1139671440918278001
 AudioListener:
   m_ObjectHideFlags: 0
