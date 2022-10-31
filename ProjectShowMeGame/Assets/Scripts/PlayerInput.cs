@@ -53,7 +53,7 @@ public class PlayerInput : MonoBehaviour
 
         nextTimeToEffect = Time.time + 0.2f;
 
-        StartCoroutine(Shake(0.15f, 0.1f));
+        //StartCoroutine(Shake(0.15f, 0.1f));
     }
 
     public IEnumerator Shake(float duration, float magnitude)
