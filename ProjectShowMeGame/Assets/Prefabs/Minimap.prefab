@@ -148,7 +148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  objectsToMark: []
+  objectsToMark:
+  - {fileID: 0}
+  rotateMinimap: 0
   minimap: {fileID: 1500400380577995154}
   minimapCamera: {fileID: 1500400380282028565}
   markerPrefab: {fileID: 3448123703801902512, guid: fba22a46b49a84e4b8d416dafd738741,
@@ -218,7 +220,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 2147483647
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: dc73d8b361e0a874fac065ae2027daa9, type: 2}
   m_TargetDisplay: 0

@@ -993,7 +993,7 @@ GameObject:
   - component: {fileID: 1923232027651819596}
   - component: {fileID: 6511228501122463022}
   - component: {fileID: 6511228501122463021}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: RearTires
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1091,7 +1091,7 @@ GameObject:
   - component: {fileID: 5487660941837178381}
   - component: {fileID: 4437509983521231977}
   - component: {fileID: 4717637722719482828}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: FrontTires
   m_TagString: Untagged
   m_Icon: {fileID: 0}
