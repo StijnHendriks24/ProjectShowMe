@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,8 +47,21 @@ public class CarController : MonoBehaviour
 
     Vector3 drot = new Vector3(0f, 0f, 0f);
 
+    private Action<float> collisionCallback;
+
+    [Header("Audio")]
+    public AudioClip engineRunningClip;
+    public AudioSource engineAudioSource;
+
+    private float engineRunningVolume;
+    private Coroutine engineVolumeCoroutine;
+
     void Start()
     {
+        engineAudioSource.clip = engineRunningClip;
+        engineRunningVolume = engineAudioSource.volume;
+        engineAudioSource.Play();
+
         rigidBody = GetComponent<Rigidbody>();
 
         startPosition = transform.position;
@@ -77,6 +91,11 @@ public class CarController : MonoBehaviour
         }
     }
 
+    public void SetupConnection(Action<float> _collisionCallback)
+    {
+        collisionCallback = _collisionCallback;
+    }
+
     void FixedUpdate()
     {
         accel = Acceleration;
@@ -98,6 +117,19 @@ public class CarController : MonoBehaviour
 
     public void GiveInput(float throttle, float steering)
     {
+        if (throttle > 0 || throttle < 0)
+        {
+            if(engineVolumeCoroutine != null)
+                StopCoroutine(engineVolumeCoroutine);
+            engineVolumeCoroutine = StartCoroutine(ChangeEngineVolume(engineRunningVolume, 1));
+        }
+        else
+        {
+            if (engineVolumeCoroutine != null)
+                StopCoroutine(engineVolumeCoroutine);
+            engineVolumeCoroutine = StartCoroutine(ChangeEngineVolume(engineRunningVolume / 2, 1));
+        }
+
         this.throttle = throttle;
         this.steering = steering;
     }
@@ -182,6 +214,26 @@ public class CarController : MonoBehaviour
         {
             float dir = (velLocal.z < 0) ? -1 : 1;
             RotateGradConst(steering * dir);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        float ImpactForce = (collision.impulse / Time.fixedDeltaTime).magnitude;
+
+        collisionCallback.Invoke(ImpactForce);
+    }
+
+    private IEnumerator ChangeEngineVolume(float end, float duration)
+    {
+        float startVolume = engineAudioSource.volume;
+        float t = 0.0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float newVolume = Mathf.Lerp(startVolume, end, t / duration);
+            engineAudioSource.volume = newVolume;
+            yield return null;
         }
     }
 }
