@@ -16,6 +16,8 @@ public class CarController : MonoBehaviour
     public float AngDragAir = 0.05f;
     public float distToGround = 1f;
 
+    public Vector3 centerOfMass = new Vector3(0, 0.5f, 0);
+
     private float MinRotSpd = 1f;
 
     private Rigidbody rigidBody;
@@ -63,6 +65,7 @@ public class CarController : MonoBehaviour
         engineAudioSource.Play();
 
         rigidBody = GetComponent<Rigidbody>();
+        rigidBody.centerOfMass = centerOfMass;
 
         startPosition = transform.position;
         startRotation = transform.rotation;
@@ -234,6 +237,16 @@ public class CarController : MonoBehaviour
             float newVolume = Mathf.Lerp(startVolume, end, t / duration);
             engineAudioSource.volume = newVolume;
             yield return null;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if(rigidBody != null)
+        {
+            Gizmos.color = Color.red;
+            Debug.Log(rigidBody.centerOfMass);
+            Gizmos.DrawSphere(transform.position + rigidBody.centerOfMass, .25f);
         }
     }
 }
