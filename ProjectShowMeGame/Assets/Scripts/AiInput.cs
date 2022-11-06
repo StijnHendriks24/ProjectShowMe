@@ -12,6 +12,14 @@ public class AiInput : MonoBehaviour
     protected Transform Target;
     private NavMeshAgent agent;
 
+    [Header("Audio")]
+    public bool debugAudio = false;
+    public float collisionForceThreshold = 200;
+    public AudioClip collisionClip;
+    public AudioSource effectsAudioSource;
+
+    private float nextTimeToEffect;
+
     public virtual void Start()
     {
         carController = GetComponent<CarController>();
@@ -20,6 +28,27 @@ public class AiInput : MonoBehaviour
         agent = GetComponentInChildren<NavMeshAgent>();
 
         agent.SetDestination(Target.position);
+
+        carController.SetupConnection(CollisionOccured);
+    }
+
+    void CollisionOccured(float impactForce)
+    {
+        if (Time.time < nextTimeToEffect)
+            return;
+
+        if (debugAudio)
+        {
+            Debug.Log(gameObject.name + " ImpactForce: " + impactForce);
+        }
+
+        if (impactForce < collisionForceThreshold)
+            return;
+
+        effectsAudioSource.clip = collisionClip;
+        effectsAudioSource.Play();
+
+        nextTimeToEffect = Time.time + 0.2f;
     }
 
     public virtual void Update()

@@ -434,6 +434,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnThreshold: 3
+  debugAudio: 0
+  collisionForceThreshold: 200
+  collisionClip: {fileID: 8300000, guid: ad2dbdcd36136ac458e6a0393da09606, type: 3}
+  effectsAudioSource: {fileID: 435853782374073234}
   target: {fileID: 0}
 --- !u!1 &2770174776876758402
 GameObject:

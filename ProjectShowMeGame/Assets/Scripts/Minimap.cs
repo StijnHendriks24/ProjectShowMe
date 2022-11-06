@@ -37,7 +37,7 @@ public class Minimap : MonoBehaviour
             markedObjects[i].anchoredPosition = new Vector2(offset.x, offset.z);
         }
 
-        transform.position = player.position + Vector3.up * 5f;
+        transform.position = player.position + Vector3.up * 20f;
 
         if(rotateMinimap)
             RotateOverlay();
