@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 1450214683301988910}
   - component: {fileID: 1450214683301988908}
   - component: {fileID: 1450214683301989072}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: EnemyCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -491,7 +491,7 @@ Transform:
   m_GameObject: {fileID: 2264151996769833109}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.166584, y: 0, z: -319.63}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0884, y: 1.0884, z: 0.6530401}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6152068520420439174}
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Acceleration: 15
-  TopSpeed: 20
+  TopSpeed: 17
   GripX: 25
   GripZ: 20
   Rotate: 200
@@ -784,7 +784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4784030309659914444}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1240,7 +1240,7 @@ GameObject:
   - component: {fileID: 7119999885625719587}
   - component: {fileID: 4984259269141073897}
   - component: {fileID: 5183773918865232929}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

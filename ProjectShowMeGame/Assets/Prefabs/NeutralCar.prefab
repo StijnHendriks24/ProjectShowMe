@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 1872005010091859015}
   - component: {fileID: 1872005010091859013}
   - component: {fileID: 1346965584267871997}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: NeutralCar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1294,7 +1294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6125447965166302642}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}

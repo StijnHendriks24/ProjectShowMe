@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScreen.unity
     guid: 8a0bb0344fd27c1409a0c6adb7a786ed
   - enabled: 1
-    path: Assets/Scenes/Blok Out.unity
-    guid: a15d3ebd828acd64688b0ac531d9684f
+    path: Assets/Scenes/ToonShaderTest 1.unity
+    guid: 6b217a30af327134f965fd8b92f12a17
   m_configObjects: {}
