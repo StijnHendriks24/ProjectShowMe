@@ -23,6 +23,8 @@ public class EnemySpeech : MonoBehaviour
         if(nextChangeIn <= 0)
         {
             speechBubble.SetActive(!speechBubble.activeInHierarchy);
+
+            nextChangeIn = Random.Range(minMaxChangeTime.x, minMaxChangeTime.y);
         }
     }
 }
